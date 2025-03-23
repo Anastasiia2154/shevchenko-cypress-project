@@ -1,0 +1,16 @@
+{
+  "name": "shevchenko-cypress-project",
+  "version": "1.0.0",
+  "description": "cypress tests project",
+  "main": "index.js",
+  "scripts": {
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "cypress:run:headed": "cypress run --headed"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^14.2.0"
+  }
+}
