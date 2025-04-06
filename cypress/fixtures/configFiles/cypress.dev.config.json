@@ -1,0 +1,7 @@
+{
+    "baseUrl": "https://qauto.forstudy.space",
+    "env": {
+        "defaultUserEmail": "testemail41@gmail.com",
+        "defaultUserPassword": "testPass04"
+    }
+}
