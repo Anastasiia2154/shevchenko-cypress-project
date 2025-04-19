@@ -8,14 +8,14 @@ export default class GaragePage {
     addButton: () => cy.get("app-add-car-modal").contains("button", "Add"),
     carRow: () => cy.get('li[class="car-item"]'),
     milesInput: () => cy.get('input[class*="update-mileage-form_input"]'),
-    addExpenseButton: () => cy.contains('button', "Add fuel expense"),
+    addExpenseButton: () => cy.contains("button", "Add fuel expense"),
+    fuelExpensesTab: () => cy.get('[routerlink="expenses"]'),
   };
 
   shouldSeeMainGaragePage() {
     this.selectors.pageTitle().should("be.visible", { timeout: 5000 });
     this.selectors.addCarButton().should("be.visible");
   }
-  
 
   addCar(caraData) {
     this.selectors.addCarButton().click();
@@ -30,7 +30,11 @@ export default class GaragePage {
     this.selectors.milesInput().should("have.value", miles);
   }
 
-  clickAddExpenseButton(){
+  clickAddExpenseButton() {
     this.selectors.addExpenseButton().click();
+  }
+
+  openFuelExpensesTab() {
+    this.selectors.fuelExpensesTab().click();
   }
 }
