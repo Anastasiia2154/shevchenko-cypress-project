@@ -6,6 +6,10 @@ export default class FuelExpensesPage {
     this.garagePage.clickAddExpenseButton();
   }
 
+  openAddFuelExpensesPage() {
+    this.garagePage.openFuelExpensesTab();
+  }
+
   selectors = {
     addExpenseField: () => cy.get('[id="addExpenseCar"]'),
     expenseDateField: () => cy.get('[id="addExpenseDate"]'),

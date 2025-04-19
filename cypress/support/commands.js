@@ -25,6 +25,42 @@ Cypress.Commands.overwrite("type", (originalFn, element, text, options) => {
   }
   return originalFn(element, text, options);
 });
+
+Cypress.Commands.add("loginWithAuth", (email, password) => {
+  const baseUrl = Cypress.config("baseUrl");
+  cy.request("POST", `${baseUrl}/api/auth/signin`, {
+    email,
+    password,
+  }).then((response) => {
+    expect(response.status).to.eq(200);
+    const token = response.body.data.token;
+
+    Cypress.env("authToken", token);
+
+    cy.visit("/", {
+      auth: {
+        username: "guest",
+        password: "welcome2qauto",
+      },
+      onBeforeLoad(win) {
+        win.localStorage.setItem("token", token);
+      },
+    });
+  });
+});
+
+Cypress.Commands.add("createExpense", (token, expenseData) => {
+  const baseUrl = Cypress.config("baseUrl");
+  return cy.request({
+    method: "POST",
+    url: `${baseUrl}/api/expenses`,
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    body: expenseData,
+  });
+});
+
 //
 //
 // -- This is a parent command --
